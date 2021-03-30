@@ -57,7 +57,7 @@ public class account_menu {
 		System.out.println("축하드립니다!! 성공적으로 등록되셨습니다.");
 	}
 	public static void Delmember() {  
-		Scanner input = new Scanner(System.in);
+		Scanner input = new Scanner(System.in);   //배열이 없어 제대로 실행 x
 		System.out.println("");
 		System.out.println("삭제할 멤버를 입력해주세요");
 		String del_member = input.next();
