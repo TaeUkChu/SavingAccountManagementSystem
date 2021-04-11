@@ -23,14 +23,14 @@ public class account_menu {
 			membermanager.Addmember();  //멤버 정보를 추가
 			continue;
 		
-		case 2:	//2번을 고를 경우 삭제받을 멤버를 입력받고 삭제시켜줌			
+		case 2:	//2번을 고를 경우 삭제받을 멤버를 입력받고 삭제시켜줌	
+			membermanager.Viewmembers();
 			membermanager.Delmember();
 			continue;
 		
 		case 3:		//3번을 고를 경우 현재 등록된 멤버를 보여주고 선택하게 함. 
-			membermanager.Viewmember();
+			membermanager.Viewmembers();
 			membermanager.Selectmember();  
-			membermanager.trade();
 			continue;
 		
 		case 4:		//4번을 고를 경우 while 루프가 끝나면서 바이바이~
