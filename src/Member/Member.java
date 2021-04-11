@@ -1,4 +1,4 @@
-package Member;
+package Member;		//¸â¹ö
 
 import java.util.Scanner;
 
