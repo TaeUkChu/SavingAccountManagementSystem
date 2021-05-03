@@ -2,16 +2,18 @@ package Member;
 
 import java.util.Scanner;
 //Member 클래스의 자식 클래스를 ChildMember로 정함
-public class ChildMember extends Member {	
-
-	public void getUserInput(Scanner input) {
+public class ChildMember extends Member {
+	
+	public ChildMember(MemberKind kind) {
+		super(kind);
+	}
+	
+	public void getUserInput(Scanner input) {	//메소드 오버라이딩
 		System.out.println("추가할 (아이)멤버 정보를 입력해주세요");	
 		System.out.print("이름:");
 		String name = input.next();
 		this.setName(name);
-		System.out.print("나이:");
-		int age = input.nextInt();
-		this.setAge(age);
+		age = this.getAge();	//age는 앞에 질문에서 이미 물어봤으므로 얻어오기만 하면 됨
 		// 전화번호를 받을지 말지 선택하는 루프문
 		char ans = 'x';
 		while (ans != 'y' && ans !='n') {
@@ -28,7 +30,7 @@ public class ChildMember extends Member {
 				break;
 			}
 			else {
-
+				System.out.println("y,n 중에서 골라주세요");
 			}
 		}
 		System.out.print("계좌 비밀 번호:");

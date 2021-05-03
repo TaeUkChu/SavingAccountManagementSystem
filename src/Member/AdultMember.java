@@ -3,18 +3,20 @@ package Member;
 import java.util.Scanner;
 //Member 클래스의 자식 클래스를 ChildMember로 정함
 public class AdultMember extends Member {
-
-	public void getUserInput(Scanner input) {
-		System.out.println("추가할 (성인)멤버 정보를 입력해주세요");	
+	
+	public AdultMember(MemberKind kind) {
+		super(kind);
+	}
+	
+	public void getUserInput(Scanner input) {	//메소드 오버라이딩
+		System.out.println("추가할 (성인)멤버 정보를 입력해주세요");
 		System.out.print("이름:");
 		String name = input.next();
 		this.setName(name);
-		System.out.print("나이:");
-		int age = input.nextInt();
-		this.setAge(age);
-		//성인 중 나이가 30세이상인 사람은 계좌에 5000원 쏴줌
-		System.out.println("나이가 30세 이상이시라면 신규 계좌에 5000원을 입금해드립니다.");	
-		//나이가 30세 이상이면 budget에 5000원 넣어주는 루프문
+		//성인 중 나이가 20세이상 40세 미만인 사람은 계좌에 5000원 쏴줌
+		System.out.println("나이가 20세 이상 40세 미만 성인이시라면 신규 계좌에 5000원을 입금해드립니다.");	
+		//나이가 20세 이상 40세 미만이면 budget에 5000원 넣어주는 루프문
+		age = this.getAge();	//age는 앞에 질문에서 이미 물어봤으므로 얻어오기만 하면 됨
 		if(age >= 30) {
 			System.out.println("나이가 "+ age +" 로 30세 이상이시군요");
 			

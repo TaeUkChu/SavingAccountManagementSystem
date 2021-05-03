@@ -4,14 +4,18 @@ import java.util.Scanner;
 import Member.AdultMember;
 import Member.ChildMember;
 import Member.Member;
+import Member.MemberKind;
+import Member.OldmanMember;
 
 public class MemberManager {
+	
 	ArrayList<Member> members = new ArrayList<Member>();
 	Scanner input;
-	
+
 	MemberManager(Scanner input){
 		this.input = input;
 	}
+	
 	public void Addmember() {
 		int kind =0;
 		Member member;	
@@ -23,22 +27,31 @@ public class MemberManager {
 		if (n < 20 && n>0) {
 			kind = 1;
 		}
-		else {
+		else if (n>20 && n<60){
 			kind = 2 ;
 		}
-		//kind = 1 이면 아이 , kind = 2이면 어른으로 저장
+		else if (n>60) {
+			kind = 3;
+		}
+		//kind = 1 이면 아이 , kind = 2 이면 어른, kind = 3이면 노인으로 저장
 			if (kind == 1) {
-				member = new ChildMember();
+				member = new ChildMember(MemberKind.Child);
+				member.setAge(n);
 				member.getUserInput(input);
 				members.add(member);
 		}
 			
 			else if (kind ==2) {
-				member = new AdultMember();
+				member = new AdultMember(MemberKind.Adult);
+				member.setAge(n);
 				member.getUserInput(input);
 				members.add(member);
 		}
-			else {
+			else if (kind == 3){
+				member = new OldmanMember(MemberKind.Oldman);
+				member.setAge(n);
+				member.getUserInput(input);
+				members.add(member);
 		}
 		}
 	
@@ -114,9 +127,14 @@ public class MemberManager {
 						outputmoney = input.nextInt();
 	
 						totalmoney -= outputmoney;
-						members.get(i).setBudget_money(totalmoney);
-						System.out.println(outputmoney+"원 출금 되었습니다.");
-						System.out.println("잔액:"+ members.get(i).getBudget_money()+"원");
+						if(totalmoney < 0) {
+							System.out.println("한도 초과: "+totalmoney);
+						}
+						else {
+							members.get(i).setBudget_money(totalmoney);
+							System.out.println(outputmoney+"원 출금 되었습니다.");
+							System.out.println("잔액:"+ members.get(i).getBudget_money()+"원");
+						}
 						continue;
 						
 					case 3:	
@@ -127,8 +145,8 @@ public class MemberManager {
 					
 				}break;
 		}		
-		}
-		
 	}
+	}
+
 
 

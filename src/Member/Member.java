@@ -4,13 +4,19 @@ import java.util.Scanner;
 
 public class Member {
 	protected MemberKind kind = MemberKind.Adult;
+	
 	protected String name;
 	protected int age;
 	protected String call_number;
 	protected int password;
 	protected int budget_money;		//계좌 잔고 추가
+	protected int dept_money;		//빚진 돈 추가
 		
 		public Member() {
+		}
+		
+		public Member(MemberKind kind) {
+			this.kind = kind;
 		}
 		
 		public Member(String name, int age, int password) {
@@ -19,18 +25,22 @@ public class Member {
 			this.password = password;
 		}
 		
-		public Member(String name, int age, String call_number, int password) {
+		public Member(MemberKind kind, String name, int age, String call_number, int password) {
+			this.kind = kind;
 			this.name = name;
 			this.age = age;
 			this.call_number = call_number;
 			this.password = password;
 		}
-		public Member(String name, int age, String call_number, int password,int budget_money) {		//이름 나이 전화번호 비밀번호 계좌잔고를 받음
+		//이름 나이 전화번호 비밀번호 계좌잔고를 받음
+		public Member(MemberKind kind, String name, int age, String call_number, int password,int budget_money,int dept_money) {	
+			this.kind = kind;
 			this.name = name;
 			this.age = age;
 			this.call_number = call_number;
 			this.password = password;
 			this.budget_money = budget_money;
+			this.dept_money = dept_money;
 		}
 		
 		public MemberKind getKind() {
@@ -80,13 +90,27 @@ public class Member {
 		public void setBudget_money(int budget_money) {
 			this.budget_money = budget_money;
 		}
+		
+		
 		public void printInfo() {
-				System.out.println("이름: "+name+" 나이: "+age+" 전화번호: "+call_number);
-			
+			String skind = "none";
+			switch(this.kind) {
+			case Adult:
+				skind = "어른";
+				break;
+			case Child:
+				skind = "아이";
+				break;
+			case Oldman:
+				skind = "노인";
+				break;
+			default:
+			}
+				System.out.println("연령대:"+skind+"이름: "+name+" 나이: "+age+" 전화번호: "+call_number);
 		}
-			
+		
 		public void getUserInput(Scanner input) {
-			System.out.println("추가할 멤버 정보를 입력해주세요");	//이름,나이,전화번호,계좌비밀번호를 입력받음. 배열로 저장하고싶은데 실행 x
+			System.out.println("추가할 멤버 정보를 입력해주세요");	
 			System.out.print("이름:");
 			String name = input.next();
 			this.setName(name);
