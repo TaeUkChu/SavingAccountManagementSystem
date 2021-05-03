@@ -12,7 +12,6 @@ public class MemberManager {
 	MemberManager(Scanner input){
 		this.input = input;
 	}
-	
 	public void Addmember() {
 		int kind =0;
 		Member member;	
@@ -33,6 +32,7 @@ public class MemberManager {
 				member.getUserInput(input);
 				members.add(member);
 		}
+			
 			else if (kind ==2) {
 				member = new AdultMember();
 				member.getUserInput(input);
@@ -74,6 +74,7 @@ public class MemberManager {
 		for (int i=0 ; i<members.size(); i++) {
 			members.get(i).printInfo();
 		}
+		
 	}
 	
 	public void Selectmember() { 	//입출금을 관여하는 메소드
