@@ -21,7 +21,7 @@ public class MemberManager {
 		Member member;	
 		//멤버를 받음
 		int n = 0;
-		//나이 값을 입력받아 0~20 이면 kind = 1 그 외는 kind=2로 저장
+		//나이 값을 입력받아 0~20 이면 kind = 1 ,20~60은 kind=2로 저장 60~는 kind=3로 저장
 		System.out.println("나이를 입력해주세요");
 		n = input.nextInt();
 		if (n < 20 && n>0) {
@@ -106,47 +106,57 @@ public class MemberManager {
 					num1 = input.nextInt();
 					//계좌에 입출금 한 후 남은 잔액을 나타내는 저장소로 totalmoney 만듬
 					int totalmoney = members.get(i).getBudget_money();
+
 					switch (num1) {
 					case 1:
 						System.out.println("얼마를 입금하시겠습니까?");
 						System.out.println("현재 잔액: " + members.get(i).getBudget_money());
-						
+
 						int inputmoney ;
 						inputmoney  = input.nextInt();
-						
+
 						totalmoney += inputmoney;
 						members.get(i).setBudget_money(totalmoney);
 						System.out.println(inputmoney+"원 입금되었습니다.");
 						System.out.println("잔액:"+members.get(i).getBudget_money());
 						continue;
-						
+
 					case 2:
-						System.out.println("잔액 :" + members.get(i).getBudget_money()+"원");
-						System.out.println("출금 금액: ");
-						int outputmoney ;
-						outputmoney = input.nextInt();
-	
-						totalmoney -= outputmoney;
-						if(totalmoney < 0) {
-							System.out.println("한도 초과: "+totalmoney);
+						System.out.println("출금 하기 위해 비밀번호를 입력해 주세요");	//출금 비밀번호를 입력받고 맞을 시 출금해줌
+						int cor_password = input.nextInt();
+						if (members.get(i).getPassword() ==cor_password) {
+
+							System.out.println("잔액 :" + members.get(i).getBudget_money()+"원");
+							System.out.println("출금 금액: ");
+							int outputmoney ;
+							outputmoney = input.nextInt();
+
+							totalmoney -= outputmoney;
+							if(totalmoney < 0) {
+								System.out.println("잔액 부족: "+totalmoney);
+							}
+							else {
+								members.get(i).setBudget_money(totalmoney);
+								System.out.println(outputmoney+"원 출금 되었습니다.");
+								System.out.println("잔액:"+ members.get(i).getBudget_money()+"원");
+							}
 						}
 						else {
-							members.get(i).setBudget_money(totalmoney);
-							System.out.println(outputmoney+"원 출금 되었습니다.");
-							System.out.println("잔액:"+ members.get(i).getBudget_money()+"원");
+							System.out.println("비밀번호가 다릅니다.");
+							System.out.println("출금하시려면 다시 시도해주세요.");
 						}
 						continue;
-						
+
 					case 3:	
 						System.out.println("본 메뉴 화면으로 돌아갑니다.");
 					}
-				
-					}
-					
-				}break;
+
+				}
+
+			}break;
 		}		
 	}
-	}
+}
 
 
 
