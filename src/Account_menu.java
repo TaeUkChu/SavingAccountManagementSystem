@@ -12,7 +12,7 @@ public class Account_menu {
 		
 		System.out.println("1.멤버 추가하기.");
 		System.out.println("2.멤버 삭제하기.");
-		System.out.println("3.멤버 조회하기.");
+		System.out.println("3.멤버 조회 및 입출금하기.");
 		System.out.println("4.종료하기");
 		
 		System.out.println("*********원하시는 메뉴를 선택해 주세요*********");

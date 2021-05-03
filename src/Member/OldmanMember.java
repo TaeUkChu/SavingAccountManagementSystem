@@ -9,7 +9,7 @@ public class OldmanMember extends Member{
 		System.out.println(this.getName()+"님의 재산은 차후 국가에 귀속될 것입니다");
 	}
 	public void heritage(String name) {
-		System.out.println(this.getName()+"님의 재산은 차후" + name +"에 상속될 것입니다");
+		System.out.println(this.getName()+"님의 재산은 차후" + name +" 에 상속될 것입니다");
 	}
 	
 	public OldmanMember(MemberKind kind) {
