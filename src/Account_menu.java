@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class account_menu {
+public class Account_menu {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		MemberManager membermanager = new MemberManager(input);
@@ -40,4 +40,3 @@ public class account_menu {
 	}
 	}
 }
-	
