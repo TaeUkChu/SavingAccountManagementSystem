@@ -4,12 +4,13 @@ import java.util.Scanner;
 import Member.AdultMember;
 import Member.ChildMember;
 import Member.Member;
+import Member.MemberInput;
 import Member.MemberKind;
 import Member.OldmanMember;
 
 public class MemberManager {
 	
-	ArrayList<Member> members = new ArrayList<Member>();
+	ArrayList<MemberInput> members = new ArrayList<MemberInput>();
 	Scanner input;
 
 	MemberManager(Scanner input){
@@ -18,7 +19,7 @@ public class MemberManager {
 	
 	public void Addmember() {
 		int kind =0;
-		Member member;	
+		MemberInput memberInput;	
 		//멤버를 받음
 		int n = 0;
 		//나이 값을 입력받아 0~20 이면 kind = 1 ,20~60은 kind=2로 저장 60~는 kind=3로 저장
@@ -35,23 +36,23 @@ public class MemberManager {
 		}
 		//kind = 1 이면 아이 , kind = 2 이면 어른, kind = 3이면 노인으로 저장
 			if (kind == 1) {
-				member = new ChildMember(MemberKind.Child);
-				member.setAge(n);
-				member.getUserInput(input);
-				members.add(member);
+				memberInput = new ChildMember(MemberKind.Child);
+				memberInput.setAge(n);
+				memberInput.getUserInput(input);
+				members.add(memberInput);
 		}
 			
 			else if (kind ==2) {
-				member = new AdultMember(MemberKind.Adult);
-				member.setAge(n);
-				member.getUserInput(input);
-				members.add(member);
+				memberInput = new AdultMember(MemberKind.Adult);
+				memberInput.setAge(n);
+				memberInput.getUserInput(input);
+				members.add(memberInput);
 		}
 			else if (kind == 3){
-				member = new OldmanMember(MemberKind.Oldman);
-				member.setAge(n);
-				member.getUserInput(input);
-				members.add(member);
+				memberInput = new OldmanMember(MemberKind.Oldman);
+				memberInput.setAge(n);
+				memberInput.getUserInput(input);
+				members.add(memberInput);
 		}
 		}
 	
@@ -63,10 +64,11 @@ public class MemberManager {
 		String del_member = input.next();
 		//비밀번호를 입력받고 비밀번호가 맞으면 멤버 삭제
 		for (int i=0 ; i<members.size(); i++) {
-			if (members.get(i).getName().equals(del_member)) {
+			MemberInput memberInput = members.get(i);
+			if (memberInput.getName().equals(del_member)) {
 					System.out.println("삭제 하기 위해 비밀번호를 입력해 주세요");
 						int del_password = input.nextInt();
-						if (members.get(i).getPassword() ==del_password) {
+						if (memberInput.getPassword() ==del_password) {
 							members.remove(i);
 							System.out.println("멤버 "+del_member +"는 삭제되었습니다.");
 							return ;
@@ -95,7 +97,8 @@ public class MemberManager {
 		System.out.println("아니라면 아무 키나 눌러주세요");
 		String Select_name = input.next();
 		for (int i=0 ; i<members.size(); i++) {
-			if(members.get(i).getName().equals(Select_name)) {
+			MemberInput memberInput = members.get(i);
+			if(memberInput.getName().equals(Select_name)) {
 				int num1 = -1;
 				while (num1 != 3) {
 					System.out.println("***원하시는 작업을 선택해주세요***");
@@ -105,28 +108,28 @@ public class MemberManager {
 					System.out.println("3. 취소하고 메뉴로 돌아가기.");
 					num1 = input.nextInt();
 					//계좌에 입출금 한 후 남은 잔액을 나타내는 저장소로 totalmoney 만듬
-					int totalmoney = members.get(i).getBudget_money();
+					int totalmoney = memberInput.getBudget_money();
 
 					switch (num1) {
 					case 1:
 						System.out.println("얼마를 입금하시겠습니까?");
-						System.out.println("현재 잔액: " + members.get(i).getBudget_money());
+						System.out.println("현재 잔액: " + memberInput.getBudget_money());
 
 						int inputmoney ;
 						inputmoney  = input.nextInt();
 
 						totalmoney += inputmoney;
-						members.get(i).setBudget_money(totalmoney);
+						memberInput.setBudget_money(totalmoney);
 						System.out.println(inputmoney+"원 입금되었습니다.");
-						System.out.println("잔액:"+members.get(i).getBudget_money());
+						System.out.println("잔액:"+memberInput.getBudget_money());
 						continue;
 
 					case 2:
 						System.out.println("출금 하기 위해 비밀번호를 입력해 주세요");	//출금 비밀번호를 입력받고 맞을 시 출금해줌
 						int cor_password = input.nextInt();
-						if (members.get(i).getPassword() ==cor_password) {
+						if (memberInput.getPassword() ==cor_password) {
 
-							System.out.println("잔액 :" + members.get(i).getBudget_money()+"원");
+							System.out.println("잔액 :" + memberInput.getBudget_money()+"원");
 							System.out.println("출금 금액: ");
 							int outputmoney ;
 							outputmoney = input.nextInt();
@@ -134,11 +137,12 @@ public class MemberManager {
 							totalmoney -= outputmoney;
 							if(totalmoney < 0) {
 								System.out.println("잔액 부족: "+totalmoney);
+								System.out.println("출금 실패했습니다.");
 							}
 							else {
-								members.get(i).setBudget_money(totalmoney);
+								memberInput.setBudget_money(totalmoney);
 								System.out.println(outputmoney+"원 출금 되었습니다.");
-								System.out.println("잔액:"+ members.get(i).getBudget_money()+"원");
+								System.out.println("잔액:"+ memberInput.getBudget_money()+"원");
 							}
 						}
 						else {

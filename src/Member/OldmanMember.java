@@ -2,14 +2,14 @@ package Member;
 
 import java.util.Scanner;
 
-public class OldmanMember extends Member{
+public class OldmanMember extends Member implements MemberInput{
 	
 	//유산 상속 메소드 오버로딩
 	public void heritage() {
 		System.out.println(this.getName()+"님의 재산은 차후 국가에 귀속될 것입니다");
 	}
 	public void heritage(String name) {
-		System.out.println(this.getName()+"님의 재산은 차후" + name +" 에 상속될 것입니다");
+		System.out.println(this.getName()+"님의 재산은 차후 " + name +" 에 상속될 것입니다");
 	}
 	
 	public OldmanMember(MemberKind kind) {

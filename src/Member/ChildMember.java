@@ -2,7 +2,7 @@ package Member;
 
 import java.util.Scanner;
 //Member 클래스의 자식 클래스를 ChildMember로 정함
-public class ChildMember extends Member {
+public class ChildMember extends Member implements MemberInput{
 	
 	public ChildMember(MemberKind kind) {
 		super(kind);
@@ -38,4 +38,21 @@ public class ChildMember extends Member {
 		this.setPassword(password);
 		System.out.println("축하드립니다!! 성공적으로 등록되셨습니다.");
 	}
+	public void printInfo() {
+		String skind = "none";
+		switch(this.kind) {
+		case Adult:
+			skind = "어른";
+			break;
+		case Child:
+			skind = "아이";
+			break;
+		case Oldman:
+			skind = "노인";
+			break;
+		default:
+		}
+			System.out.println("연령대:"+skind+"이름: "+name+" 나이: "+age+" 전화번호: "+call_number);
+	}
+	
 }
