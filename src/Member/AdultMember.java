@@ -34,7 +34,7 @@ public class AdultMember extends Member {
 	
 	public void printInfo() {
 		String skind = getKindString();
-			System.out.println("연령대: "+skind+"이름: "+name+" 나이: "+age+" 전화번호: "+call_number);
+			System.out.println("연령대: "+skind+"이름: "+name+" 나이: "+age+ " 전화번호: "+call_number +"\n현재 잔액:"+ budget_money);
 	}
 
 	@Override

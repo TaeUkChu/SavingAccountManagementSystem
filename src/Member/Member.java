@@ -1,11 +1,17 @@
 package Member;		//¸â¹ö....
 
+import java.io.Serializable;
 import java.util.Scanner;
 
 import exception.NameFormatException;
 import exception.PasswordFormatException;
 
-public abstract class Member implements MemberInput{
+public abstract class Member implements MemberInput, Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -240069854623819954L;
+
 	protected MemberKind kind = MemberKind.Adult;
 	
 	protected String name;

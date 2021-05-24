@@ -1,18 +1,25 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import Member.AdultMember;
 import Member.ChildMember;
-import Member.Member;
 import Member.MemberInput;
 import Member.MemberKind;
 import Member.OldmanMember;
 
-public class MemberManager 	{
+public class MemberManager implements Serializable	{
+	
+	
+	public int trycount = 1;
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8314359235640816360L;
 	
 	ArrayList<MemberInput> members = new ArrayList<MemberInput>();
-	Scanner input;
-
+	transient Scanner input;	//저장하고싶지않다.
 	MemberManager(Scanner input){
 		this.input = input;
 	}
@@ -65,6 +72,7 @@ public int RMPassword(int index) {		//삭제시 패스워드
 	if(index >= 0 ) {
 		int del_password = -1;
 		while(del_password != 0) {		
+			
 		System.out.println("■삭제 하기 위해 【비밀번호】를 입력해 주세요■");
 		System.out.println("■■삭제 관리를 나가시려면 【0】를 눌러주세요■■");
 		del_password = input.nextInt();
@@ -72,10 +80,14 @@ public int RMPassword(int index) {		//삭제시 패스워드
 			if (member.getPassword() == del_password) {
 					System.out.println("멤버 【"+member.getName() +"】는 삭제되었습니다.");	
 					members.remove(index); 
+					//logger.log(member.getName()+"멤버 삭제 완료.");
+					trycount = 1;
 					break;
 				}
 				else {
 					System.out.println("비밀번호가 다릅니다. 삭제 실패");
+					//logger.log(member.getName()+"멤버 삭제 실패. 시도 횟수:"+trycount);
+					trycount++;
 					continue;
 		}
 	}
@@ -118,10 +130,12 @@ public int RMPassword(int index) {		//삭제시 패스워드
 						SetAddMoney(member,input);
 						continue;
 					case 2:
+					//	logger.log("출금 시도.");
 						SetMinusMoney(member, input);
 						continue;
 					case 3:	
 						System.out.println("본 메뉴 화면으로 돌아갑니다.");
+						trycount = 1;
 						break;
 					}
 				}
@@ -149,32 +163,39 @@ public int RMPassword(int index) {		//삭제시 패스워드
 		member.setBudget_money(totalmoney);
 		System.out.println(inputmoney+"원 입금되었습니다.");
 		System.out.println("잔액:"+member.getBudget_money());
+		//logger.log(member.getName()+"님"+member.getBudget_money() +"원 입금 완료.");
 	}
 	public void SetMinusMoney(MemberInput member, Scanner input) {
+	
 		int totalmoney = member.getBudget_money();
 		System.out.println("출금 하기 위해 비밀번호를 입력해 주세요");	//출금 비밀번호를 입력받고 맞을 시 출금해줌
 		int cor_password = input.nextInt();
+		
 		if (member.getPassword() ==cor_password) {
-
+			trycount =1 ;
 			System.out.println("잔액 :" + member.getBudget_money()+"원");
 			System.out.println("출금 금액: ");
 			int outputmoney ;
 			outputmoney = input.nextInt();
-
 			totalmoney -= outputmoney;
+			
 			if(totalmoney < 0) {
 				System.out.println("잔액 부족: "+totalmoney);
 				System.out.println("출금 실패했습니다.");
+			//	logger.log(member.getName()+"님 출금 실패.\n이유: 잔액 부족");
 			}
 			else {
 				member.setBudget_money(totalmoney);
 				System.out.println(outputmoney+"원 출금 되었습니다.");
 				System.out.println("잔액:"+ member.getBudget_money()+"원");
+			//	logger.log(member.getName()+"님 "+outputmoney +"출금 완료");
 			}
 		}
 		else {
 			System.out.println("비밀번호가 다릅니다.");
 			System.out.println("출금하시려면 다시 시도해주세요.");
+			//logger.log(member.getName()+"님 출금 실패. 시도 횟수: "+trycount+"번");
+			trycount++;
 		}
 	}
 	public void SetMember(MemberInput member, Scanner input, int n) {

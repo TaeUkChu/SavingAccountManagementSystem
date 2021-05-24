@@ -57,7 +57,7 @@ public class OldmanMember extends Member{
 	}
 	public void printInfo() {		//메소드 오버라이딩
 		String skind = getKindString();
-			System.out.println("연령대: "+skind+"이름: "+name+" 나이: "+age +"전화 번호: "+ call_number +"자녀의 전화번호: "+ (S_call_number));
+			System.out.println("연령대: "+skind+"이름: "+name+" 나이: "+age +"전화 번호:" + call_number + "자녀의 전화번호:" + (S_call_number)+"\n현재 잔액:"+ budget_money);
 	}
 	@Override
 	public void SetAddMoney(MemberInput member, Scanner input) {
