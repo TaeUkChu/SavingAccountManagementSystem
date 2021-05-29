@@ -17,6 +17,9 @@ public class Account_menu {
 		if (membermanager ==null) {
 			membermanager = new MemberManager(input);
 		} 
+		else {
+			membermanager.input = input; // 추가하니 해결됨
+		}
 			SelectMenu(input,membermanager);
 			putObject(membermanager, "membermanager.ser");
 			

@@ -29,6 +29,7 @@ public class MemberManager implements Serializable	{
 		int n = 0;
 		//나이 값을 입력받아 0~20 이면 kind = 1 ,20~60은 kind=2로 저장 60~는 kind=3로 저장
 		System.out.println("나이를 입력해주세요");
+		
 		n = input.nextInt();
 		int kind = whatkind(n);
 		//kind = 1 이면 아이 , kind = 2 이면 어른, kind = 3이면 노인으로 저장
