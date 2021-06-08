@@ -1,9 +1,11 @@
+package manager;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import Member.AdultMember;
 import Member.ChildMember;
+import Member.Member;
 import Member.MemberInput;
 import Member.MemberKind;
 import Member.OldmanMember;
@@ -113,7 +115,14 @@ public int RMPassword(int index) {		//삭제시 패스워드
 		else {
 			System.out.println("저장된 멤버가 존재하지 않습니다.");
 		}
-		
+	}
+	
+	public int size() {	//멤버 사이즈(총 몇명?)인지 확인
+		return members.size();
+	}
+	
+	public MemberInput get(int index) {
+		return (Member) members.get(index);
 	}
 	
 	public void Selectmember() { 	//입출금을 관여하는 메소드

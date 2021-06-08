@@ -1,3 +1,4 @@
+package manager;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -6,6 +7,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
+import gui.WindowFrame;
 import log.EventLogger;
 
 public class Account_menu {
@@ -20,6 +22,7 @@ public class Account_menu {
 		else {
 			membermanager.input = input; // 추가하니 해결됨
 		}
+			WindowFrame frame = new WindowFrame(membermanager);
 			SelectMenu(input,membermanager);
 			putObject(membermanager, "membermanager.ser");
 			

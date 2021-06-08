@@ -7,8 +7,6 @@ import exception.PasswordFormatException;
 
 public interface MemberInput {
 	
-
-	
 	public void setAge(int age);
 	public void setName(String name) throws NameFormatException;
 	public void setCall_number(String call_number);
@@ -17,6 +15,8 @@ public interface MemberInput {
 	
 	public void getUserInput(Scanner input);
 	public String getName();
+	public int getAge();
+	public String getCall_number();
 	public int getPassword();
 	public int getBudget_money();
 	
