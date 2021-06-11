@@ -8,6 +8,7 @@ import manager.MemberManager;
 public class WindowFrame extends JFrame{
 	
 	MemberManager membermanager;
+	
 	MenuSelection menuSelection;
 	MemberAdder memberAdder ;
 	MemberViewer memberViewer;
@@ -15,8 +16,8 @@ public class WindowFrame extends JFrame{
 
 	public WindowFrame(MemberManager membermanager) {
 		this.membermanager = membermanager;
-		menuSelection = new MenuSelection(this);
-		memberAdder = new MemberAdder(this);
+		menuSelection = new MenuSelection(this,this.membermanager);
+		memberAdder = new MemberAdder(this,this.membermanager);
 		memberViewer = new MemberViewer(this,this.membermanager);
 
 		

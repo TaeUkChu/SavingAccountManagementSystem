@@ -7,11 +7,18 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import listeners.MemberAdderCancelListener;
+import listeners.MemberAdderListener;
+import manager.MemberManager;
+
 public class MemberAdder extends JPanel{
-	WindowFrame frame;
 	
-	public MemberAdder(WindowFrame frame) {
+	WindowFrame frame;
+	MemberManager membermanager;
+
+	public MemberAdder(WindowFrame frame,	MemberManager membermanager) {
 		this.frame = frame;
+		this.membermanager = membermanager;
 		JPanel panel = new JPanel(new SpringLayout());
 		panel.setLayout(new SpringLayout());
 		
@@ -36,15 +43,20 @@ public class MemberAdder extends JPanel{
 		JLabel labelPW = new JLabel("비밀번호: ", JLabel.TRAILING);
 		JTextField fieldPW = new JTextField(10);
 		labelPW.setLabelFor(fieldPW);
+		
+		JButton saveButton = new JButton("저장");
+		saveButton.addActionListener(new MemberAdderListener(fieldAge,fieldName,fieldPhone,fieldPW,	membermanager));
+		JButton cancelButton = new JButton("취소");
+		cancelButton.addActionListener(new MemberAdderCancelListener(frame));
+		
 		panel.add(labelPW);
 		panel.add(fieldPW);
 		
-		panel.add(new JButton("저장"));
-		panel.add(new JButton("취소"));
+		panel.add(saveButton);
+		panel.add(cancelButton);
 		
 		SpringUtilities.makeCompactGrid(panel, 5, 2, 6, 6, 6, 6);
 		
-		 
 		this.add(panel);
 		this.setVisible(true);
 	} 

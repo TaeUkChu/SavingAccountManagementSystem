@@ -9,12 +9,15 @@ import javax.swing.JPanel;
 
 import listeners.ButtonAddListener;
 import listeners.ButtonViewlistener;
+import manager.MemberManager;
 
 public class MenuSelection extends JPanel{
 	
 	WindowFrame frame;
-	
-	public MenuSelection(WindowFrame frame) {
+	MemberManager membermanager;
+
+	public MenuSelection(WindowFrame frame,	MemberManager membermanager) {
+		this.membermanager = membermanager;
 		this.frame = frame;
 		this.setLayout(new BorderLayout());
 		

@@ -25,6 +25,16 @@ public class MemberManager implements Serializable	{
 	MemberManager(Scanner input){
 		this.input = input;
 	}
+	public void Addmember(String age,String name,String Phone,String PW) {
+		int n = 0;
+		n = input.nextInt();
+		MemberInput memberInput = new AdultMember(MemberKind.Adult);
+		SetMember(memberInput ,input, n);
+		}
+
+	public void Addmember(MemberInput memberInput) {
+		members.add(memberInput);
+	}
 	
 	public void Addmember() {
 		MemberInput memberInput;		//¸â¹ö¸¦ ¹ÞÀ½

@@ -81,13 +81,10 @@ public class Account_menu {
 	}
 	public static MemberManager getObject(String fileName) {
 		MemberManager membermanager = null;
-		
 		try {
 			FileInputStream file = new FileInputStream(fileName);
 			ObjectInputStream in = new ObjectInputStream(file);
-			
 			membermanager = (MemberManager) in.readObject();
-			
 			in.close();
 			file.close();
 			
@@ -100,7 +97,6 @@ public class Account_menu {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		return membermanager;
 	}
 	
